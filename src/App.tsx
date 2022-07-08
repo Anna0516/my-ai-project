@@ -1,20 +1,34 @@
-import React from 'react';
+
+import { useRecoilState } from 'recoil'
+import RouterAtom from './atoms/RouterAtom';
+import Home from './components/Home'
 import Navigation from './components/navigation/Navigation';
-import Logo from './components/logo/Logo'
-import ImageLinkForm from './components/imageLinkForm/ImageLinkForm';
-import Rank from './components/rank/Rank';
+import SignIn from './components/signIn/SignIn';
+import Register from './components/register/Register';
 import './App.css';
 
+
+
+
 const App = () => {
+  const [route] = useRecoilState<string>(RouterAtom)
+
 
   return (
     <div className="App">
-
       <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm />
-      {/*<FaceRecognition />*/}
+      {route === 'home' ?
+        <div>
+
+          <Home />
+
+        </div>
+        : (
+          route === 'signin' ?
+            <SignIn />
+            : <Register />
+        )}
+
     </div>
   );
 }

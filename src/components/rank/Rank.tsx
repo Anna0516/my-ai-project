@@ -1,13 +1,16 @@
 import React from "react"
+import { useRecoilState } from 'recoil'
+import UserAtom from "../../atoms/UserAtom"
 
 const Rank = () => {
+  const [user] = useRecoilState(UserAtom)
   return (
     <div>
       <div className="white f3">
-        {'Anna, your current rank is...'}
+        {`${user.name}, your current entry count is...`}
       </div>
       <div className="white f1">
-        {'#5'}
+        {`${user.entries}`}
       </div>
     </div>
   )
